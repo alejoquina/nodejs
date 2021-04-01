@@ -1,0 +1,14 @@
+version: '3.1'
+
+services:
+  db:
+    image: postgres:11.6
+    restart: always
+    environment:
+      - POSTGRES_DB=postgres-docker
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=123456789
+    volumes:
+      - /mock-db:/var/lib/postgresql
+    ports:
+      - '5432:5432'

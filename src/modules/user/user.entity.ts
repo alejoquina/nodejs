@@ -1,4 +1,3 @@
-import { resolveSoa } from 'node:dns';
 import { BaseEntity, Column, Entity, JoinColumn, JoinTable, ManyToMany, OneToOne, PrimaryGeneratedColumn} from 'typeorm';
 import { Role } from '../role/role.entity';
 import { UserDetails } from './user.details.entity';

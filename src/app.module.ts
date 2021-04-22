@@ -5,7 +5,7 @@ import { ConfigService } from './config.service';
 import { configuration } from './config/config.keys';
 import { ConfigModule } from './config/config.module';
 import { DatabaseModule } from './database/database.module';
-import { RoleModule } from './module/role/role.module';
+
 import { RoleModule } from './modules/role/role.module';
 
 

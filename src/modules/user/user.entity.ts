@@ -25,7 +25,7 @@ export class User extends BaseEntity{
         {cascade:true, 
         nullable:false,
         eager:true })
-    @JoinColumn({name: "details_id"})
+    @JoinColumn({name: "detail_id"})
     details: UserDetails;
 
     @ManyToMany(type=> Role, role => role.users)

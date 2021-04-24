@@ -13,13 +13,13 @@ export const databaseProviders =[
         async useFactory(config: ConfigService){
 
             return{
-                ssl: true,
+                ssl: false,
                 type: 'postgres' as 'postgres',
                 host: config.get(configuration.HOST),
                 port: parseInt(config.get(configuration.PORT_DB)),
                 username: config.get(configuration.USERNAME),
-                pass: config.get(configuration.PASSWORD),
-                entities: [__dirname + '/../**/.entity{.ts,.js}'],
+                password: config.get(configuration.PASSWORD),
+                entities: [__dirname + '/../**/*.entity{.ts,.js}'],
                 migrations: [__dirname + '/migrations/*{.ts,.js}'],
             } as  ConnectionOptions;
         }

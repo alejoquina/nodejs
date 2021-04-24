@@ -12,7 +12,7 @@ export class UserController {
         //constrcutor
     }
 
-    @Get()
+    @Get(':id')
     async getUser(@Param() id: number):Promise<UserDto>{
         const user = await  this._userService.get(id);
         return user;
@@ -25,19 +25,19 @@ export class UserController {
 
     }
 
-    @Post()
+    @Post('create')
     async createUser(@Body() user: User): Promise<UserDto>{
-        const createUser = await this.createUser(user);
+        const createUser = await this._userService.create(user);
         return createUser;
     }
 
-    @Patch()
-    async updateUser(@Param() id: number, @Body() user: User): Promise<UserDto>{
-        const createUser = await this.createUser(user);
-        return createUser;
+    @Patch(':id')
+    async updateUser(@Param() id: number, @Body() user: User){
+        const updateUser = await this._userService.update(id,user);
+        return true;
     }
 
-    @Delete()
+    @Delete(':id')
     async deleteUser(@Param() id: number){
         await  this._userService.delete(id);
         return true;

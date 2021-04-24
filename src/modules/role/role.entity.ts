@@ -1,6 +1,6 @@
-import { BaseEntity, Column, Entity, JoinColumn, ManyToMany, PrimaryGeneratedColumn } from "typeorm";
+import { BaseEntity, Column, CreateDateColumn, Entity, JoinColumn, ManyToMany, PrimaryGeneratedColumn, UpdateDateColumn } from "typeorm";
 import { User } from "../user/user.entity";
-import { UserModule } from "../user/user.module";
+
 
 @Entity('roles')
 export class Role extends BaseEntity{
@@ -13,7 +13,7 @@ export class Role extends BaseEntity{
 
     @Column({ type: "text", nullable:false })
     descripcion: string;
-
+    
     @ManyToMany(type=> User, user => user.roles)
     @JoinColumn()
     users: User[];
@@ -21,10 +21,10 @@ export class Role extends BaseEntity{
     @Column({type: 'varchar', default: 'ACTIVE', length: 8})
     status: string;
 
-    @Column({type: 'timestamp', name: 'created_at'})
+    @CreateDateColumn({type: 'timestamp', name: 'created_at'})
     createAT: Date;
 
-    @Column({type: 'timestamp', name: 'update_at'})
+    @UpdateDateColumn({type: 'timestamp', name: 'update_at'})
     updateAT: Date;
     
 }

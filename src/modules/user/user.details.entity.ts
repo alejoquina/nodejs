@@ -1,4 +1,4 @@
-import { BaseEntity, Column, Entity, PrimaryGeneratedColumn} from 'typeorm';
+import { BaseEntity, Column, CreateDateColumn, Entity, PrimaryGeneratedColumn, UpdateDateColumn} from 'typeorm';
 
 //tabla
 @Entity('users_details')
@@ -17,9 +17,9 @@ export class UserDetails extends BaseEntity{
     @Column({type: 'varchar', default: 'ACTIVE', length: 8})
     status: string;
 
-    @Column({type: 'timestamp', name: 'created_at'})
+    @CreateDateColumn({type: 'timestamp', name: 'created_at'})
     createAT: Date;
 
-    @Column({type: 'timestamp', name: 'update_at'})
+    @UpdateDateColumn({type: 'timestamp', name: 'update_at'})
     updateAT: Date;
 }

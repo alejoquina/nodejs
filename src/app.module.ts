@@ -6,7 +6,10 @@ import { configuration } from './config/config.keys';
 import { ConfigModule } from './config/config.module';
 import { DatabaseModule } from './database/database.module';
 
+
 import { RoleModule } from './modules/role/role.module';
+import { UserModule } from './modules/user/user.module';
+import { SharedModule } from './shared/shared.module';
 
 
 
@@ -15,7 +18,7 @@ import { RoleModule } from './modules/role/role.module';
   
   controllers: [AppController],
   providers: [AppService],
-  imports: [RoleModule],
+  imports: [DatabaseModule,ConfigModule,RoleModule,UserModule,SharedModule],
   
   
 })

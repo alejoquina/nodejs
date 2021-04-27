@@ -2,9 +2,14 @@ import { BadRequestException, Injectable, NotFoundException } from '@nestjs/comm
 import { InjectRepository } from '@nestjs/typeorm';
 import { NOTFOUND } from 'node:dns';
 import { MapperService } from 'src/shared/mapper.service';
+import { getConnection } from 'typeorm';
+import { Role } from '../role/role.entity';
+import { RoleType } from '../role/roletype.enum';
 import { UserDto } from './dto/user.dto';
+import { UserDetails } from './user.details.entity';
 import { User } from './user.entity';
 import { UserRepository } from './user.repository';
+
 
 @Injectable()
 export class UserService {
@@ -43,6 +48,12 @@ export class UserService {
     }
 
     async create(user:User): Promise<UserDto>{
+        const details = new UserDetails();
+        user.details = details;
+
+        const repo = await getConnection().getRepository(Role);
+        const defaulRole = await repo.findOne({where: {name_role: "GENERAL"}});
+        user.roles = [defaulRole];
         const savedUser: User = await this._userRepository.save(user);
         return this._mapperservice.map<User,UserDto>(savedUser, new UserDto());
     }
